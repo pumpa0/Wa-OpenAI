@@ -1,3 +1,5 @@
+require("http").createServer((_, res) => res.end("Berjalan coy")).listen(8080)
+
 const sessionName = 'yusril'
 const donet = 'https://saweria.co/hanbotz'
 const owner = ['6285731855426']
