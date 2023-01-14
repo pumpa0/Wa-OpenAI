@@ -3,7 +3,9 @@ const fs = require('fs')
 const util = require('util')
 const chalk = require('chalk')
 const { Configuration, OpenAIApi } = require("openai")
+const os = require('os')
 let setting = require('./key.json')
+let settings = require('./api.txt')
 
 module.exports = sansekai = async (client, m, chatUpdate, store) => {
     try {
@@ -57,9 +59,12 @@ module.exports = sansekai = async (client, m, chatUpdate, store) => {
     if (setting.autoAI) {
         if (budy) {
             try {
-            if (setting.keyopenai === 'ISI_APIKEY_OPENAI_DISINI') return reply('Apikey belum diisi\n\nSilahkan isi terlebih dahulu apikeynya di file key.json\n\nApikeynya bisa dibuat di website: https://beta.openai.com/account/api-keys')
+            if (settings.keyopenai === 'ISI_APIKEY_OPENAI_DISINI') return reply('Apikey belum diisi\n\nSilahkan isi terlebih dahulu apikeynya di file key.json\n\nApikeynya bisa dibuat di website: https://beta.openai.com/account/api-keys')
+            
+            m.reply(`[ ⏳ ] _Sedang diproses_`)
+            
             const configuration = new Configuration({
-              apiKey: setting.keyopenai, 
+              apiKey: settings.keyopenai, 
             });
             const openai = new OpenAIApi(configuration);
             
@@ -85,12 +90,19 @@ module.exports = sansekai = async (client, m, chatUpdate, store) => {
             switch(command) { 
                 case 'ai':
                     try {
-                        if (setting.keyopenai === 'ISI_APIKEY_OPENAI_DISINI') return reply('Apikey belum diisi\n\nSilahkan isi terlebih dahulu apikeynya di file key.json\n\nApikeynya bisa dibuat di website: https://beta.openai.com/account/api-keys')
-                        if (!text) return reply(`Chat dengan AI.\n\nContoh:\n${prefix}${command} Apa itu resesi`)
+                        if (settings.keyopenai === 'ISI_APIKEY_OPENAI_DISINI') return reply('Apikey belum diisi\n\nSilahkan isi terlebih dahulu apikeynya di file key.json\n\nApikeynya bisa dibuat di website: https://beta.openai.com/account/api-keys')
+                        if (!text) return reply(`Tanyakan apa saja kepada AI dengan cara penggunaan:
+
+*/ai* tolong buatkan puisi
+
+_*NOTE: DILARANG KERAS MELAKUKAN AKTIFITAS YANG BERBAU PORNO. RESIKO JIKA MELAKUKAN AKAN DI BLOCK*_`)
+                        
+                        m.reply(`[ ⏳ ] _Sedang diproses_`)
+                        
                         const configuration = new Configuration({
-                            apiKey: setting.keyopenai,
-                        });
-                        const openai = new OpenAIApi(configuration);
+              apiKey: settings.keyopenai, 
+            });
+            const openai = new OpenAIApi(configuration);
                     
                         const response = await openai.createCompletion({
                             model: "text-davinci-003",
@@ -109,6 +121,12 @@ module.exports = sansekai = async (client, m, chatUpdate, store) => {
                     break
                 default:{
                 
+                if (command) {
+return m.reply(`\n\nTanyakan apa saja kepada AI dengan cara penggunaan :
+
+*/ai* tolong buatkan puisi\n\n`)
+}
+
                     if (isCmd2 && budy.toLowerCase() != undefined) {
                         if (m.chat.endsWith('broadcast')) return
                         if (m.isBaileys) return

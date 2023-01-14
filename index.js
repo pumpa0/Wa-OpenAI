@@ -1,6 +1,4 @@
-require("http").createServer((_, res) => res.end("Berjalan coy")).listen(8080)
-
-const sessionName = 'session'
+const sessionName = 'yusril'
 const donet = 'https://saweria.co/hanbotz'
 const owner = ['6285731855426']
 const { default: sansekaiConnect, useSingleFileAuthState, DisconnectReason, fetchLatestBaileysVersion, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateMessageID, downloadContentFromMessage, makeInMemoryStore, jidDecode, proto, getContentType } = require("@adiwajshing/baileys")
