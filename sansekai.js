@@ -41,10 +41,10 @@ module.exports = sansekai = async (client, m, chatUpdate, store) => {
         if (setting.autoAI) {
             // Push Message To Console && Auto Read
             if (argsLog && !m.isGroup) {
-            // client.sendReadReceipt(m.chat, m.sender, [m.key.id])
+            client.sendReadReceipt(m.chat, m.sender, [m.key.id])
             console.log(chalk.black(chalk.bgWhite('[ LOGS ]')), color(argsLog, 'turquoise'), chalk.magenta('From'), chalk.green(pushname), chalk.yellow(`[ ${m.sender.replace('@s.whatsapp.net', '')} ]`))
             } else if (argsLog && m.isGroup) {
-            // client.sendReadReceipt(m.chat, m.sender, [m.key.id])
+            client.sendReadReceipt(m.chat, m.sender, [m.key.id])
             console.log(chalk.black(chalk.bgWhite('[ LOGS ]')), color(argsLog, 'turquoise'), chalk.magenta('From'), chalk.green(pushname), chalk.yellow(`[ ${m.sender.replace('@s.whatsapp.net', '')} ]`), chalk.blueBright('IN'), chalk.green(groupName))
             }
         } else if (!setting.autoAI) {
@@ -89,13 +89,14 @@ module.exports = sansekai = async (client, m, chatUpdate, store) => {
         if (isCmd2) {
             switch(command) { 
                 case 'ai':
+                case 'menu':
                     try {
                         if (process.env.OPENAI_API_KEY === 'ISI_APIKEY_OPENAI_DISINI') return reply('Apikey belum diisi\n\nSilahkan isi terlebih dahulu apikeynya di file key.json\n\nApikeynya bisa dibuat di website: https://beta.openai.com/account/api-keys')
-                        if (!text) return reply(`Tanyakan apa saja kepada AI dengan cara penggunaan:
+                        if (!text) return reply(`\n\nTanyakan apa saja kepada AI dengan cara penggunaan:
 
-*/ai* tolong buatkan puisi
+*.ai* tolong buatkan puisi
 
-_*NOTE: DILARANG KERAS MELAKUKAN AKTIFITAS YANG BERBAU PORNO. RESIKO JIKA MELAKUKAN AKAN DI BLOCK*_`)
+_*NOTE: DILARANG KERAS MELAKUKAN AKTIFITAS YANG BERBAU PORNO. RESIKO JIKA MELAKUKAN AKAN DI BLOCK*_\n\n`)
                         
                         //m.reply(`[ ⏳ ] _Sedang diproses_`)
                         client.sendMessage(from, { react: { text: `⏳`, key: m.key }})
