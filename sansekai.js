@@ -5,7 +5,6 @@ const chalk = require('chalk')
 const { Configuration, OpenAIApi } = require("openai")
 const os = require('os')
 let setting = require('./key.json')
-let settings = require('./api.txt')
 
 module.exports = sansekai = async (client, m, chatUpdate, store) => {
     try {
@@ -59,12 +58,12 @@ module.exports = sansekai = async (client, m, chatUpdate, store) => {
     if (setting.autoAI) {
         if (budy) {
             try {
-            if (settings.keyopenai === 'ISI_APIKEY_OPENAI_DISINI') return reply('Apikey belum diisi\n\nSilahkan isi terlebih dahulu apikeynya di file key.json\n\nApikeynya bisa dibuat di website: https://beta.openai.com/account/api-keys')
+            if (process.env.OPENAI_API_KEY === 'ISI_APIKEY_OPENAI_DISINI') return reply('Apikey belum diisi\n\nSilahkan isi terlebih dahulu apikeynya di file key.json\n\nApikeynya bisa dibuat di website: https://beta.openai.com/account/api-keys')
             
             m.reply(`[ ⏳ ] _Sedang diproses_`)
             
             const configuration = new Configuration({
-              apiKey: settings.keyopenai, 
+              apiKey: process.env.OPENAI_API_KEY, 
             });
             const openai = new OpenAIApi(configuration);
             
@@ -90,7 +89,7 @@ module.exports = sansekai = async (client, m, chatUpdate, store) => {
             switch(command) { 
                 case 'ai':
                     try {
-                        if (settings.keyopenai === 'ISI_APIKEY_OPENAI_DISINI') return reply('Apikey belum diisi\n\nSilahkan isi terlebih dahulu apikeynya di file key.json\n\nApikeynya bisa dibuat di website: https://beta.openai.com/account/api-keys')
+                        if (process.env.OPENAI_API_KEY === 'ISI_APIKEY_OPENAI_DISINI') return reply('Apikey belum diisi\n\nSilahkan isi terlebih dahulu apikeynya di file key.json\n\nApikeynya bisa dibuat di website: https://beta.openai.com/account/api-keys')
                         if (!text) return reply(`Tanyakan apa saja kepada AI dengan cara penggunaan:
 
 */ai* tolong buatkan puisi
@@ -100,7 +99,7 @@ _*NOTE: DILARANG KERAS MELAKUKAN AKTIFITAS YANG BERBAU PORNO. RESIKO JIKA MELAKU
                         m.reply(`[ ⏳ ] _Sedang diproses_`)
                         
                         const configuration = new Configuration({
-              apiKey: settings.keyopenai, 
+              apiKey: process.env.OPENAI_API_KEY, 
             });
             const openai = new OpenAIApi(configuration);
                     
