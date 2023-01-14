@@ -5,8 +5,10 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "build": "[my-framework] build --output public"
   },
+
   "keywords": [
     "termux",
     "whatsapp-openai",
