@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "build": "[my-framework] build --output public"
+    "start": "node index.js",
   },
 
   "keywords": [
