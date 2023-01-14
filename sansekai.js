@@ -60,7 +60,8 @@ module.exports = sansekai = async (client, m, chatUpdate, store) => {
             try {
             if (process.env.OPENAI_API_KEY === 'ISI_APIKEY_OPENAI_DISINI') return reply('Apikey belum diisi\n\nSilahkan isi terlebih dahulu apikeynya di file key.json\n\nApikeynya bisa dibuat di website: https://beta.openai.com/account/api-keys')
             
-            m.reply(`[ ⏳ ] _Sedang diproses_`)
+            //m.reply(`[ ⏳ ] _Sedang diproses_`)
+            client.sendMessage(from, { react: { text: `⏳`, key: m.key }})
             
             const configuration = new Configuration({
               apiKey: process.env.OPENAI_API_KEY, 
@@ -96,7 +97,8 @@ module.exports = sansekai = async (client, m, chatUpdate, store) => {
 
 _*NOTE: DILARANG KERAS MELAKUKAN AKTIFITAS YANG BERBAU PORNO. RESIKO JIKA MELAKUKAN AKAN DI BLOCK*_`)
                         
-                        m.reply(`[ ⏳ ] _Sedang diproses_`)
+                        //m.reply(`[ ⏳ ] _Sedang diproses_`)
+                        client.sendMessage(from, { react: { text: `⏳`, key: m.key }})
                         
                         const configuration = new Configuration({
               apiKey: process.env.OPENAI_API_KEY, 
