@@ -89,7 +89,6 @@ module.exports = sansekai = async (client, m, chatUpdate, store) => {
         if (isCmd2) {
             switch(command) { 
                 case 'ai':
-                case 'menu':
                     try {
                         if (process.env.OPENAI_API_KEY === 'ISI_APIKEY_OPENAI_DISINI') return reply('Apikey belum diisi\n\nSilahkan isi terlebih dahulu apikeynya di file key.json\n\nApikeynya bisa dibuat di website: https://beta.openai.com/account/api-keys')
                         if (!text) return reply(`\n\nTanyakan apa saja kepada AI dengan cara penggunaan:
